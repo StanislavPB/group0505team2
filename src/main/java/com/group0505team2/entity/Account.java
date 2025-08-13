@@ -1,19 +1,21 @@
 package com.group0505team2.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Account {
     private int id;
-    private User user;
+    // добавить наименование счета
+    private int  userId;// !!!!! подправить !!!!
     private double balance;
     private List<Transaction> transactions;
 
-    public Account(int id, User user, double balance, List<Transaction> transactions) {
+    public Account(int id, int userId) {
         this.id = id;
-        this.user = user;
-        this.balance = balance;
-        this.transactions = transactions;
+        this.userId = userId;
+        this.balance = 0;
+        this.transactions = new ArrayList<>();
     }
 
     public int getId() {
@@ -31,6 +33,8 @@ public class Account {
     public List<Transaction> getTransactions() {
         return transactions;
     }
+
+    // добавить метод addNewTransaction
 
     @Override
     public String toString() {
