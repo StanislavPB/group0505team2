@@ -1,3 +1,5 @@
+package com.group0505team2.enums;
+
 public enum Category {
     SALARY("Salary"),
     FOOD("Food"),
