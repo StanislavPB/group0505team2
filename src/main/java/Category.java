@@ -1,7 +1,7 @@
 public enum Category {
-    SALARY("Зарплата"),
-    FOOD("Еда"),
-    ENTERTAINMENT("Развлечения"),
+    SALARY("Salary"),
+    FOOD("Food"),
+    ENTERTAINMENT("entertainment"),
     ;
 
     private String displayName;
