@@ -1,4 +1,4 @@
-package com.group0505team2;
+package com.group0505team2.entity;
 
 import jdk.jfr.Category;
 
