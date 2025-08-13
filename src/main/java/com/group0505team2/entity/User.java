@@ -1,5 +1,6 @@
 package com.group0505team2.entity;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -11,13 +12,13 @@ public class User {
     private String profession;
     private List<Account> accounts;
 
-    public User(String name, String login, String password, String address, String profession, List<Account> accounts) {
+    public User(String name, String login, String password, String address, String profession) {
         this.name = name;
         this.login = login;
         this.password = password;
         this.address = address;
         this.profession = profession;
-        this.accounts = accounts;
+        this.accounts = new ArrayList<>();
     }
 
     public String getName() {
@@ -43,6 +44,8 @@ public class User {
     public List<Account> getAccounts() {
         return accounts;
     }
+
+    // добавить метод addNewAccount
 
     @Override
     public String toString() {
