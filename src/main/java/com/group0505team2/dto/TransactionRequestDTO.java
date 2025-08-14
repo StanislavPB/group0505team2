@@ -4,26 +4,27 @@ package com.group0505team2.dto;
 import java.time.LocalDate;
 
 public class TransactionRequestDTO {
-    private int id;
+    private Integer id;
     private String date;
     private String desc;
-    private String category;
-    private double amount;
-    // добавить номер account по которому будет операция
+    private String categoryName;
+    private Double amount;
+    private int accountName;
 
-    public TransactionRequestDTO(int id, String date, String desc, String category, double amount) {
+    public TransactionRequestDTO(Integer id, String date, String desc, String categoryName, Double amount, int accountName) {
         this.id = id;
         this.date = date;
         this.desc = desc;
-        this.category = category;
+        this.categoryName = categoryName;
         this.amount = amount;
+        this.accountName = accountName;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -31,11 +32,15 @@ public class TransactionRequestDTO {
         return desc;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
+    }
+
+    public int getAccountName() {
+        return accountName;
     }
 }

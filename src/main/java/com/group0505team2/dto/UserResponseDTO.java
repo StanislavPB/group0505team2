@@ -5,13 +5,15 @@ import com.group0505team2.entity.Account;
 import java.util.List;
 
 public class UserResponseDTO {
+    private int id;
     private String name;
     private String login;
     private String address;
     private String profession;
     private List<Account> accounts;
 
-    public UserResponseDTO(String name, String login, String address, String profession, List<Account> accounts) {
+    public UserResponseDTO(int id, String name, String login, String address, String profession, List<Account> accounts) {
+        this.id = id;
         this.name = name;
         this.login = login;
         this.address = address;
@@ -19,23 +21,27 @@ public class UserResponseDTO {
         this.accounts = accounts;
     }
 
-    public String getName() {
+    public int getId () {
+            return id;
+        }
+
+    public String getName () {
         return name;
     }
 
-    public String getLogin() {
+    public String getLogin () {
         return login;
     }
 
-    public String getAddress() {
+    public String getAddress () {
         return address;
     }
 
-    public String getProfession() {
+    public String getProfession () {
         return profession;
     }
 
-    public List<Account> getAccounts() {
+    public List<Account> getAccounts () {
         return accounts;
     }
 }

@@ -6,16 +6,16 @@ import java.time.LocalDate;
 
 public class TransactionResponseDTO {
     private int id;
-    private LocalDate date;
+    private String date;
     private String desc;
-    private Category category;
+    private String categoryName;
     private double amount;
 
-    public TransactionResponseDTO(int id, LocalDate date, String desc, Category category, double amount) {
+    public TransactionResponseDTO(int id, String date, String desc, String categoryName, double amount) {
         this.id = id;
         this.date = date;
         this.desc = desc;
-        this.category = category;
+        this.categoryName = categoryName;
         this.amount = amount;
     }
 
@@ -23,7 +23,7 @@ public class TransactionResponseDTO {
         return id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -31,8 +31,8 @@ public class TransactionResponseDTO {
         return desc;
     }
 
-    public Category getCategory() {
-        return category;
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public double getAmount() {

@@ -7,13 +7,15 @@ import java.util.List;
 
 public class AccountResponseDTO {
     private int id;
-    private User user;
+    private String accountName;
+    private int  userId;
     private double balance;
     private List<Transaction> transactions;
 
-    public AccountResponseDTO(int id, User user, double balance, List<Transaction> transactions) {
+    public AccountResponseDTO(int id, String accountName, int userId, double balance, List<Transaction> transactions) {
         this.id = id;
-        this.user = user;
+        this.accountName = accountName;
+        this.userId = userId;
         this.balance = balance;
         this.transactions = transactions;
     }
@@ -22,8 +24,12 @@ public class AccountResponseDTO {
         return id;
     }
 
-    public User getUser() {
-        return user;
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public double getBalance() {

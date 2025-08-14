@@ -6,30 +6,19 @@ import com.group0505team2.entity.User;
 import java.util.List;
 
 public class AccountRequestDTO {
-
     private int userId;
-    // добавить наименование
+    private String accountName;
 
-    public AccountRequestDTO(int id, User user, double balance, List<Transaction> transactions) {
-        this.id = id;
-        this.user = user;
-        this.balance = balance;
-        this.transactions = transactions;
+    public AccountRequestDTO(int userId, String accountName) {
+        this.userId = userId;
+        this.accountName = accountName;
     }
 
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public double getBalance() {
-        return balance;
-    }
-
-    public List<Transaction> getTransactions() {
-        return transactions;
+    public String getAccountName() {
+        return accountName;
     }
 }
