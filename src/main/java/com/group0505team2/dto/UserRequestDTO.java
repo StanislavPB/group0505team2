@@ -10,15 +10,13 @@ public class UserRequestDTO {
     private String password;
     private String address;
     private String profession;
-    private List<Account> accounts;
 
-    public UserRequestDTO(String name, String login, String password, String address, String profession, List<Account> accounts) {
+    public UserRequestDTO(String name, String login, String password, String address, String profession) {
         this.name = name;
         this.login = login;
         this.password = password;
         this.address = address;
         this.profession = profession;
-        this.accounts = accounts;
     }
 
     public String getName() {
@@ -40,10 +38,4 @@ public class UserRequestDTO {
     public String getProfession() {
         return profession;
     }
-
-    public List<Account> getAccounts() {
-        return accounts;
-    }
-
-
 }

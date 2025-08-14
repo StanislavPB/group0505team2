@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
+    private static int nextId = 1;
+    private int id;
     private String name;
     private String login;
     private String password;
@@ -13,12 +15,17 @@ public class User {
     private List<Account> accounts;
 
     public User(String name, String login, String password, String address, String profession) {
+        this.id = nextId++;
         this.name = name;
         this.login = login;
         this.password = password;
         this.address = address;
         this.profession = profession;
         this.accounts = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
@@ -45,12 +52,15 @@ public class User {
         return accounts;
     }
 
-    // добавить метод addNewAccount
+    public void addNewAcc(Account account){
+        accounts.add(account);
+    }
 
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", address='" + address + '\'' +
@@ -61,6 +71,6 @@ public class User {
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, login, password, address, profession, accounts);
+        return Objects.hash(id, name, login, password, address, profession, accounts);
     }
 }
