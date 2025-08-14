@@ -1,6 +1,8 @@
 package com.group0505team2.entity;
 
-import jdk.jfr.Category;
+
+
+import com.group0505team2.enums.Category;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -18,6 +20,9 @@ public class Transaction {
         this.desc = desc;
         this.category = category;
         this.amount = amount;
+    }
+
+    public Transaction(int txId, LocalDate date, String desc, com.group0505team2.enums.Category category, Double amount) {
     }
 
     public int getId() {
