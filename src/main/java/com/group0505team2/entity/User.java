@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public class User {
     private static int nextId = 1;
-    private int id;
-    private String name;
-    private String login;
-    private String password;
-    private String address;
-    private String profession;
-    private List<Account> accounts;
+    private final int id;
+    private final String name;
+    private final String login;
+    private final String password;
+    private final String address;
+    private final String profession;
+    private final List<Account> accounts;
 
     public User(String name, String login, String password, String address, String profession) {
         this.id = nextId++;
@@ -73,4 +73,18 @@ public class User {
     public int hashCode() {
         return Objects.hash(id, name, login, password, address, profession, accounts);
     }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id &&
+                Objects.equals(name, user.name) &&
+                login.equals(user.login) &&
+                password.equals(user.password) &&
+                Objects.equals(address, user.address) &&
+                Objects.equals(profession, user.profession) &&
+                accounts.equals(user.accounts);
+    }
+
 }

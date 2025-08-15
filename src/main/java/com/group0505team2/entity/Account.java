@@ -7,14 +7,15 @@ import java.util.List;
 import java.util.Objects;
 
 public class Account {
-    private int nextId;
+    private static int nextId = 1;
     private int id;
-    private String accountName;
-    private int  userId;
+    private final String accountName;
+    private final int userId;
     private double balance;
-    private List<Transaction> transactions;
+    private final List<Transaction> transactions;
 
     public Account(String accountName, int userId) {
+        this.id = nextId++;
         this.accountName = accountName;
         this.userId = userId;
         this.balance = 0;
@@ -45,16 +46,16 @@ public class Account {
         return transactions;
     }
 
-    public void addNewTransaction(Transaction transaction){
-        transactions.add(transaction);
-
-        if(transaction.getOperationType() == OperationType.INCOME){
-            this.balance += transaction.getAmount();
-        } else if(transaction.getOperationType() == OperationType.EXPENSE){
-            this.balance -= transaction.getAmount();
+    public void addNewTransaction(Transaction transaction) {
+        if (transaction == null) {
+            throw new IllegalArgumentException("Transaction cannot be null");
         }
+        if (transaction.getOperationType() == OperationType.EXPENSE && balance + transaction.getAmount() < 0) {
+            throw new IllegalArgumentException("Insufficient funds for expense");
+        }
+        transactions.add(transaction);
+        balance += transaction.getAmount();
     }
-
 
     @Override
     public String toString() {
@@ -71,4 +72,17 @@ public class Account {
     public int hashCode() {
         return Objects.hash(id, accountName, userId, balance, transactions);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return id == account.id &&
+                userId == account.userId &&
+                Double.compare(account.balance, balance) == 0 &&
+                accountName.equals(account.accountName) &&
+                transactions.equals(account.transactions);
+    }
+
 }
