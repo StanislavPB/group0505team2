@@ -1,81 +1,47 @@
 package com.group0505team2.repository;
 
 import com.group0505team2.entity.Account;
+import com.group0505team2.repository.repositoryinterface.AccountRepositoryInterface;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-public class AccountRepository {
-    private List<Account> accounts;
-    private UserRepository userRepository;
+public class AccountRepository implements AccountRepositoryInterface {
+    private final List<Account> accounts;
     private int nextId = 1;
 
     public AccountRepository() {
-        this.userRepository = new ArrayList<>;
+        this.accounts = new ArrayList<>();
     }
 
-    public Account create(Account account){
-        if(account == null){
-            throw new IllegalArgumentException("account can not be empty");
-        }
-        if(account.getAccountName() == null || account.getAccountName().trim().isEmpty()){
-            throw new IllegalArgumentException("account name can not be empty");
-        }
-        if(!userRepository.existingId(account.getUserId())){
-            throw new IllegalArgumentException("user with this id doesn't exist");
-        }
-
+    public Account create(Account account) {
         account.setId(nextId++);
         accounts.add(account);
         return account;
-        // после возвращения этого объекта в СЕРВИСЕ нужно будет обратится к UserService чтобы в User
-        // в List<Account> сохранить этот аккаунт
-
     }
 
-    public Account read(int id){
-        for(Account acc : accounts){
-            if(acc.getId() == id){
-                return acc;
-            }
-        }
-        throw new IllegalArgumentException("Account with this name doesn't exist");
-    }
-
-    public void update(Account account){
-        if(account == null){
-            throw new IllegalArgumentException("account can not be empty");
-        }
-        if(account.getAccountName() == null || account.getAccountName().trim().isEmpty()){
-            throw new IllegalArgumentException("account name can not be empty");
-        }
-        if(!userRepository.existingId(account.getUserId())){
-            throw new IllegalArgumentException("user with this id doesn't exist");
-        }
-
+    public boolean update(Account account) {
         for (int i = 0; i < accounts.size(); i++) {
-            if(accounts.get(i).getId() == account.getId()){
+            if (accounts.get(i).getId() == account.getId()) {
                 accounts.set(i, account);
-                return;
+                return true;
             }
         }
-        throw new IllegalArgumentException("account with this id doesn't exist");
+        return false;
     }
 
-    public void delete (Account account){
-        for(Account acc : accounts){
-            if(acc.getId() == account.getId()){
-                accounts.remove(account);
-            }
-        }
-        throw new IllegalArgumentException("account with this id doesn't exist");
+    public boolean delete(int id) {
+        return accounts.removeIf(account -> account.getId() == id);
     }
 
-    public Account findById(int id){
-        return read(id);
+    public Optional<Account> findById(int id) {
+        return accounts.stream()
+                .filter(account -> account.getId() == id).findFirst();
     }
 
-    public List<Account> findAll(){
+    public List<Account> findAll() {
         return new ArrayList<>(accounts);
     }
+
 }
