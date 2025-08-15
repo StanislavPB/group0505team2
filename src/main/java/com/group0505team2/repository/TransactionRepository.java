@@ -7,6 +7,7 @@ import com.group0505team2.repository.repositoryinterface.TransactionRepositoryIn
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class TransactionRepository implements TransactionRepositoryInterface {
     private final List<Transaction> transactions;
@@ -24,50 +25,43 @@ public class TransactionRepository implements TransactionRepositoryInterface {
     }
 
     @Override
-    public void update(Transaction transaction) {
+    public boolean update(Transaction transaction) {
         for (int i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getId() == transaction.getId()) {
                 transactions.set(i, transaction);
-                return;
+                return true;
             }
         }
-
+        return false;
     }
 
     @Override
-    public void delete(int id) {
-
+    public boolean delete(int id) {
+        for(Transaction transaction : transactions){
+            if(transaction.getId() == id){
+                transactions.remove(transaction);
+                return true;
+            }
+        }
+       return false;
     }
 
     @Override
-    public Transaction findById(int id) {
-        return null;
-    }
-
-    public void delete(int id) {
-        for(Transaction t : transactions){
-            if(t.getId() == id){
-                transactions.remove(t);
+    public Optional<Transaction> findById(int id) {
+        for (Transaction transaction : transactions) {
+            if (transaction.getId() == id) {
+                return Optional.of(transaction);
             }
         }
-        throw new IllegalArgumentException("Transaction with this id not found");
-    }
-
-    public Transaction findById(int id) {
-        for (Transaction t : transactions) {
-            if (t.getId() == id) {
-                return t;
-            }
-        }
-        throw new IllegalArgumentException("Transaction with this id doesn't exist");
+      return Optional.empty();
     }
 
     public List<Transaction> findByDate(LocalDate start, LocalDate finish){
         List<Transaction> result = new ArrayList<>();
-        for (Transaction t : transactions){
-            if((t.getDate().isEqual(start) || t.getDate().isAfter(start)) &&
-               (t.getDate().isEqual(finish) || t.getDate().isBefore(finish))){
-                result.add(t);
+        for (Transaction transaction : transactions){
+            if((transaction.getDate().isEqual(start) || transaction.getDate().isAfter(start)) &&
+               (transaction.getDate().isEqual(finish) || transaction.getDate().isBefore(finish))){
+                result.add(transaction);
             }
         }
         return result;
@@ -75,21 +69,15 @@ public class TransactionRepository implements TransactionRepositoryInterface {
 
     public List<Transaction> findByCategory(Category category) {
         List<Transaction> result = new ArrayList<>();
-        for (Transaction t : transactions) {
-            if (t.getCategory().equals(category)) {
-                result.add(t);
+        for (Transaction transaction : transactions) {
+            if (transaction.getCategory().equals(category)) {
+                result.add(transaction);
             }
         }
-        return result;
+       return result;
     }
 
     public List<Transaction> findAll() {
         return new ArrayList<>(transactions);
     }
-
-    @Override
-    public void createAll(List<Transaction> transactions) {
-
-    }
-
 }
