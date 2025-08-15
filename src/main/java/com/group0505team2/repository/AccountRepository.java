@@ -1,7 +1,6 @@
-package com.group0505team2.repos;
+package com.group0505team2.repository;
 
 import com.group0505team2.entity.Account;
-import com.group0505team2.entity.User;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -5,7 +5,7 @@ public enum OperationType {
     EXPENSE("Expense"),
     ;
 
-    private String displayName;
+    private final String displayName;
 
     OperationType(String displayName) {
         this.displayName = displayName;
@@ -21,4 +21,5 @@ public enum OperationType {
                 "displayName='" + displayName + '\'' +
                 '}';
     }
+
 }

@@ -15,7 +15,7 @@ public enum Category {
     OTHER_EXPENSE("Other expense"),
     ;
 
-    private String displayName;
+    private final String displayName;
 
     Category(String displayName) {
         this.displayName = displayName;
@@ -29,4 +29,5 @@ public enum Category {
     public String toString() {
         return displayName;
     }
+
 }

@@ -1,4 +1,4 @@
-package com.group0505team2.repos;
+package com.group0505team2.repository;
 
 import com.group0505team2.entity.Transaction;
 import com.group0505team2.enums.Category;
