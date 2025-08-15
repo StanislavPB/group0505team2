@@ -9,7 +9,8 @@ import java.util.Optional;
 
 public class UserRepository implements UserRepositoryInterface {
     private final List<User> users;
-        private int nextId = 1;
+    private int nextId = 1;
+
     public UserRepository() {
         this.users = new ArrayList<>();
     }
