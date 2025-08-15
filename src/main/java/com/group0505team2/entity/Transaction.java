@@ -7,16 +7,15 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 public class Transaction {
-    private static int nextId = 1;
-    private final int id;
+    private int id;
     private final LocalDate date;
     private final String description;
     private final Category category;
     private final OperationType operationType;
     private final double amount;
 
-    public Transaction(String description, Category category, OperationType operationType, double amount) {
-        this.id = nextId++;
+    public Transaction(int id, String description, Category category, OperationType operationType, double amount) {
+        this.id = id;
         this.date = LocalDate.now();
         this.description = description;
         this.category = category;
@@ -26,6 +25,10 @@ public class Transaction {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public LocalDate getDate() {

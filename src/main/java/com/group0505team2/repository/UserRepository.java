@@ -9,30 +9,32 @@ import java.util.Optional;
 
 public class UserRepository implements UserRepositoryInterface {
     private final List<User> users;
-
+        private int nextId = 1;
     public UserRepository() {
         this.users = new ArrayList<>();
     }
 
     @Override
     public User create(User user) {
+        user.setId(nextId++);
         users.add(user);
         return user;
     }
 
     @Override
-    public void update(User user) {
+    public boolean update(User user) {
         for (int i = 0; i < users.size(); i++) {
             if (users.get(i).getId() == user.getId()) {
                 users.set(i, user);
-                return;
+                return true;
             }
         }
+        return false;
     }
 
     @Override
-    public void delete(int id) {
-        users.removeIf(user -> user.getId() == id);
+    public boolean delete(int id) {
+        return users.removeIf(user -> user.getId() == id);
     }
 
     @Override

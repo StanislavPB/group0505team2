@@ -7,15 +7,14 @@ import java.util.List;
 import java.util.Objects;
 
 public class Account {
-    private static int nextId = 1;
     private int id;
     private final String accountName;
     private final int userId;
     private double balance;
     private final List<Transaction> transactions;
 
-    public Account(String accountName, int userId) {
-        this.id = nextId++;
+    public Account(int id, String accountName, int userId) {
+        this.id = id;
         this.accountName = accountName;
         this.userId = userId;
         this.balance = 0;

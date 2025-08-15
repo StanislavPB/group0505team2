@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AccountRepository {
-    private List<Account> accounts = new ArrayList<>();
+    private List<Account> accounts;
     private UserRepository userRepository;
-    private int count = 1;
+    private int nextId = 1;
 
-    public AccountRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public AccountRepository() {
+        this.userRepository = new ArrayList<>;
     }
 
     public Account create(Account account){
@@ -25,7 +25,7 @@ public class AccountRepository {
             throw new IllegalArgumentException("user with this id doesn't exist");
         }
 
-        account.setId(count++);
+        account.setId(nextId++);
         accounts.add(account);
         return account;
         // после возвращения этого объекта в СЕРВИСЕ нужно будет обратится к UserService чтобы в User

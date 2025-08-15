@@ -5,8 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class User {
-    private static int nextId = 1;
-    private final int id;
+    private int id;
     private final String name;
     private final String login;
     private final String password;
@@ -14,8 +13,8 @@ public class User {
     private final String profession;
     private final List<Account> accounts;
 
-    public User(String name, String login, String password, String address, String profession) {
-        this.id = nextId++;
+    public User(int id, String name, String login, String password, String address, String profession) {
+        this.id = id;
         this.name = name;
         this.login = login;
         this.password = password;
@@ -26,6 +25,10 @@ public class User {
 
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

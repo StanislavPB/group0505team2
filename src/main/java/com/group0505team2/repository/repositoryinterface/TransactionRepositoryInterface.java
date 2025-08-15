@@ -7,13 +7,19 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface TransactionRepositoryInterface {
-    void create(Transaction transaction);
-    Transaction read(long id);
+    Transaction create(Transaction transaction);
+
     void update(Transaction transaction);
+
     void delete(long id);
+
     Transaction findById(long id);
+
     List<Transaction> findByDate(LocalDate start, LocalDate finish);
+
     List<Transaction> findByCategory(Category category);
+
     List<Transaction> findAll();
+
     void createAll(List<Transaction> transactions);
 }

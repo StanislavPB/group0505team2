@@ -2,51 +2,46 @@ package com.group0505team2.repository;
 
 import com.group0505team2.entity.Transaction;
 import com.group0505team2.enums.Category;
+import com.group0505team2.repository.repositoryinterface.TransactionRepositoryInterface;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TransactionRepository {
-    private List<Transaction> transactions = new ArrayList<>();
+public class TransactionRepository implements TransactionRepositoryInterface {
+    private final List<Transaction> transactions;
+    private int nextId = 1;
 
-    public void create(Transaction transaction) {
-        if (transaction.getCategory() == null) {
-            throw new IllegalArgumentException("Category can not be null");
-        }
-        if (transaction.getOperationType() == null) {
-            throw new IllegalArgumentException("Operation type can not be null");
-        }
-        if (transaction.getAmount() <= 0) {
-            throw new IllegalArgumentException("Amount has to be > 0");
-        }
-        if (transaction == null) {
-            throw new IllegalArgumentException("Transaction can not be null");
-        }
+    public TransactionRepository() {
+        this.transactions = new ArrayList<>();
+    }
+
+    @Override
+    public Transaction create(Transaction transaction) {
+        transaction.setId(nextId++);
         transactions.add(transaction);
+        return transaction;
     }
 
-    public Transaction read(int id) {
-        for (Transaction t : transactions) {
-            if (t.getId() == id) {
-                return t;
-            }
-        }
-        throw new IllegalArgumentException("Transaction with this id doesn't exist");
-    }
-
+    @Override
     public void update(Transaction transaction) {
-        if (transaction == null) {
-            throw new IllegalArgumentException("Transaction can not be null");
-        }
         for (int i = 0; i < transactions.size(); i++) {
             if (transactions.get(i).getId() == transaction.getId()) {
-//                ????????? дата ?????????
                 transactions.set(i, transaction);
                 return;
             }
         }
-        throw new IllegalArgumentException("Transaction with this id not found");
+
+    }
+
+    @Override
+    public void delete(int id) {
+
+    }
+
+    @Override
+    public Transaction findById(int id) {
+        return null;
     }
 
     public void delete(int id) {
@@ -59,7 +54,12 @@ public class TransactionRepository {
     }
 
     public Transaction findById(int id) {
-        return read(id);
+        for (Transaction t : transactions) {
+            if (t.getId() == id) {
+                return t;
+            }
+        }
+        throw new IllegalArgumentException("Transaction with this id doesn't exist");
     }
 
     public List<Transaction> findByDate(LocalDate start, LocalDate finish){
@@ -85,6 +85,11 @@ public class TransactionRepository {
 
     public List<Transaction> findAll() {
         return new ArrayList<>(transactions);
+    }
+
+    @Override
+    public void createAll(List<Transaction> transactions) {
+
     }
 
 }
