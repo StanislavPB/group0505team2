@@ -1,15 +1,18 @@
 package com.group0505team2.dto;
 
 public class AccountRequestDTO {
-    private final int userId;
-    private final String accountName;
+    private String userId;
+    private String accountName;
 
-    public AccountRequestDTO(int userId, String accountName) {
+    public AccountRequestDTO() {
+    }
+
+    public AccountRequestDTO(String userId, String accountName) {
         this.userId = userId;
         this.accountName = accountName;
     }
 
-    public int getUserId() {
+    public String getUserId() {
         return userId;
     }
 

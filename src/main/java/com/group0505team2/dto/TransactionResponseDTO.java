@@ -7,14 +7,14 @@ import java.time.LocalDate;
 public class TransactionResponseDTO {
     private int id;
     private String date;
-    private String desc;
+    private String description;
     private String categoryName;
-    private double amount;
+    private Double amount;
 
-    public TransactionResponseDTO(int id, String date, String desc, String categoryName, double amount) {
+    public TransactionResponseDTO(int id, String date, String description, String categoryName, Double amount) {
         this.id = id;
         this.date = date;
-        this.desc = desc;
+        this.description = description;
         this.categoryName = categoryName;
         this.amount = amount;
     }
@@ -27,15 +27,15 @@ public class TransactionResponseDTO {
         return date;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
     public String getCategoryName() {
         return categoryName;
     }
 
-    public double getAmount() {
+    public Double getAmount() {
         return amount;
     }
 }

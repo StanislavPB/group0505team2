@@ -11,6 +11,9 @@ public class UserRequestDTO {
     private String address;
     private String profession;
 
+    public UserRequestDTO() {
+    }
+
     public UserRequestDTO(String name, String login, String password, String address, String profession) {
         this.name = name;
         this.login = login;

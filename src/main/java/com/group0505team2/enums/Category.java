@@ -30,4 +30,12 @@ public enum Category {
         return displayName;
     }
 
+    public static boolean isValidCategory(String categoryName){
+        for(Category category : values()){
+            if (category.displayName.equalsIgnoreCase(categoryName)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

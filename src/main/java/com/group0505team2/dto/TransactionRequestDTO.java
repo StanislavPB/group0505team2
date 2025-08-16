@@ -1,34 +1,39 @@
 package com.group0505team2.dto;
 
 
+import com.group0505team2.enums.Category;
+
 public class TransactionRequestDTO {
-    private String desc;
+    private String description;
     private String categoryName;
-    private Double amount;
-    private int accountName;
+    private String amount;
+    private String accountId;
 
-    public TransactionRequestDTO(String desc, String categoryName, Double amount, int accountName) {
+    public TransactionRequestDTO() {
+    }
 
-        this.desc = desc;
+    public TransactionRequestDTO(String description, String categoryName, String amount, String accountId) {
+
+        this.description = description;
         this.categoryName = categoryName;
         this.amount = amount;
-        this.accountName = accountName;
+        this.accountId = accountId;
     }
 
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
     public String getCategoryName() {
         return categoryName;
     }
 
-    public Double getAmount() {
+    public String getAmount() {
         return amount;
     }
 
-    public int getAccountName() {
-        return accountName;
+    public String getAccountId() {
+        return accountId;
     }
 }
