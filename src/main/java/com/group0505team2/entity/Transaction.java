@@ -56,7 +56,7 @@ public class Transaction {
         return "Transaction{" +
                 "id=" + id +
                 ", date=" + date +
-                ", desc='" + description + '\'' +
+                ", description='" + description + '\'' +
                 ", category=" + category +
                 ", amount=" + amount +
                 '}';
@@ -78,5 +78,4 @@ public class Transaction {
                 category == that.category &&
                 operationType == that.operationType;
     }
-
 }
